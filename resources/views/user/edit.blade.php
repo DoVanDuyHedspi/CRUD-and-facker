@@ -22,7 +22,12 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Ticket Description:</label>
-                    <textarea cols="5" rows="5" class="form-control" name="description">{{$ticket->description}}</textarea>
+                    <textarea cols="5" rows="5" class="form-control" name="description" id="description">{{$ticket->description}}</textarea>
+                    <script>
+                        var simplemde = new SimpleMDE({element:document.getElementById("description"),
+                            spellChecker: false
+                        });
+                    </script>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
