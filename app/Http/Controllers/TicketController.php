@@ -8,7 +8,7 @@ class TicketController extends Controller
 {
     public function create()
     {
-        return view('user.create');
+        return view('backend.user.create');
     }
     public function store(Request $request)
     {
@@ -24,12 +24,12 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::where('user_id',auth()->user()->id)->get();
-        return view('user.index',compact('tickets'));
+        return view('backend.user.index',compact('tickets'));
     }
     public function edit($id)
     {
         $ticket = Ticket::where('user_id',auth()->user()->id)->where('id',$id)->first();
-        return view('user.edit',compact('ticket','id'));
+        return view('backend.user.edit',compact('ticket','id'));
     }
     public function update(Request $request,$id)
     {
