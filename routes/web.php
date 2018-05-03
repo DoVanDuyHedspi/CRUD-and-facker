@@ -17,10 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/errorBrowser', function () {
+//        dd('Let\'s use Chrome to login' );
+    $res = guzzle_client::request('GET', 'https://api.github.com/repos/guzzle/guzzle');
+    dd($res->getStatusCode());
+});
 
 
-Route::middleware(['admin.auth'])->group(function (){
+Route::middleware(['admin.auth','chrome'])->group(function (){
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/create/ticket','TicketController@create');
     Route::post('/create/ticket','TicketController@store');
     Route::get('/tickets','TicketController@index');
